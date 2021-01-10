@@ -1,2 +1,2 @@
 # AudioMana
- Easy and organized audio management tools for Unity
+ Easy, simple, and organized audio management tools for Unity

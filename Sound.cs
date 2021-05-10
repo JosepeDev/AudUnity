@@ -1,46 +1,32 @@
 ﻿using UnityEngine;
-using UnityEngine.Audio;
 
-[System.Serializable]
-public class Sound
+namespace Sounder
 {
-    [Tooltip("Pick a name for your sound.")]
-    public string soundName;
-
-    [Tooltip("The audio clip of the sound.")]
-    public AudioClip clip;
-
-    [Tooltip("The volume of the sound.")]
-    [Range(0f, 1f)]
-    public float volume = 1f;
-
-    [Tooltip("Turn on if you want the sound to loop after it has been played.")]
-    public bool looping = false;
-
-    [Tooltip("Turn on if you want the sound to be played automatically when Awake is being called.")]
-    public bool playOnAwake = false;
-
-    [Tooltip("Choose the mixer in which the sound will be played.")]
-    public AudioMixerGroup mixer;
-
-    public bool IsUninitialized
+    /// <summary>
+    /// A scriptable object that stores a sound
+    /// </summary>
+    [CreateAssetMenu(fileName = "Sound", menuName = LocalAudioPlayer.menuCategory + "Sound", order = 0)]
+    public class Sound : ScriptableObject
     {
-        get
+        /// <summary>
+        /// The sound contained in the preset
+        /// </summary>
+        [Tooltip("The sound contained in the preset")]
+        public SoundData sound;
+        
+        /// <summary>
+        /// Set the name of the sound by the name of the scriptable objcet
+        /// </summary>
+        protected internal void NameByObject() => sound.soundName = name;
+
+        /// <summary>
+        /// Set the name of the sound by the name of the audio clip
+        /// </summary>
+        protected internal void NameByClip() => sound.soundName = sound.clip.name;
+
+        public Sound()
         {
-            return
-                (
-                    volume != 1 ||
-                    (
-                        string.IsNullOrEmpty(soundName) &&
-                        volume == 0f &&
-                        clip == null
-                    )
-                );
+            sound = new SoundData("Unamed sound");
         }
-    }
-
-    public Sound()
-    {
-        volume = 1f;
     }
 }

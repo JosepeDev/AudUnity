@@ -9,14 +9,30 @@
 
 # How it works
  The **Sounder** project is used to make audio playing and sound management in **unity** easier than ever.  
- After importing it to unity, you'll have
- - **Local Audio Player** component
- - **Global Audio Player** component
- - **Global Audio Player Link** component
- - **Audio Library** scriptable object
+ To use it, add an Audio Player component, drag an audio library to it and play the sounds by calling the play method on the Audio Player.
+ 
+ - **Local Audio Player** component  
+  Used on objects like enemies in your game, or just sound you want to **play** on a **specific location** in your game world.  
+  
+ - **Global Audio Player** component  
+  Will be used for stuff like, UI sounds, and sounds you just want to **play globally in your scene**.
+  
+ - **Global Audio Player Link** component  
+  For calling the Global Audio Player inside the unity editor (Button component etc...)
+  
+ - **Audio Library** scriptable object  
+  An object that contain sounds, and can reference other audio libraries.  
+  You can make many audio libraries divided by category or a theme, and refernce them in a single audio library.  
+  
  - **Sound** scriptable object  
+  An object that contains all the data about your sound.  
+  Its volume, name, audio mixer, whether the sound should loop when it's played and much more.  
    
- An Audio Player, takes an Audio Library object, and initializes the sound it contains so you'll be able to play them easily
+ An **Audio Player**, takes an **Audio Library** object, and initializes the sound it contains so you'll be able to play them easily.
+ The **Local Audio Player** is 
+ The **Global Audio Player**, will be used for stuff like, UI sounds, and sounds you just want to **play globally in your scene**.
+ Only a **single** Global Audio Player **component can exist in a scene**, and it is recomended to **put it on the camera** along with the Audio Listener.
+ Then create a new Audio Library object, add Sound objects to it and drag it to the Audio Player.
  
  Inside Unity's Project window, press **right click**, and choose **Create/Sounder/Sound** and create a new sound.  
    
@@ -33,3 +49,5 @@
 # Setup And Examples
  Th
  
+# Documentations
+### Local & Global Audio Player

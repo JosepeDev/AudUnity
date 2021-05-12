@@ -9,6 +9,14 @@
 
 # How it works
  The **Sounder** project is used to make audio playing and sound management in **unity** easier than ever.  
+ After importing it to unity, you'll have
+ - **Local Audio Player** component
+ - **Global Audio Player** component
+ - **Global Audio Player Link** component
+ - **Audio Library** scriptable object
+ - **Sound** scriptable object  
+   
+ An Audio Player, takes an Audio Library object, and initializes the sound it contains so you'll be able to play them easily
  
  Inside Unity's Project window, press **right click**, and choose **Create/Sounder/Sound** and create a new sound.  
    

@@ -4,7 +4,7 @@
 ### Content
 - [**Setup & Examples**](#setup-and-examples)
 - [**Documentations**](#documentations)
-  - [CooldownsManager](#cooldownsmanager)
+  - [Local & Global Audio Player](#local-and-global-audio-player)
   - [Cooldown](#cooldown)
 
 # How it works
@@ -50,4 +50,30 @@
  Th
  
 # Documentations
-### Local & Global Audio Player
+### Local and Global Audio Player  
+Properties and Methods the global and local Audio Players have in common
+- Properties
+  - **SoundCount**  
+  A property that returns the amount of initialized sounds in the audio player  
+    
+- Methods
+  - **Play (string soundName)**  
+  Plays a sound from the audio player by its name.
+  
+  - **PlayDelayed (string soundName, float delay)**  
+  Like "Play", but it will play the sound with a delay specified in seconds
+  
+  - **AddSounds (AudioLibrary[])**  
+   **AddSounds (AudioLibrary)**  
+   **AddSounds (Sound[])**  
+   A method for adding many sounds (initializing them) manually when the game/application runs.
+  
+  - **AddSound (Sound)**  
+   **AddSound (SoundData)**  
+   A method for adding (initializing) a single sound manually when the game/application runs.  
+
+  - **RemoveSound (string soundName)**  
+  A method for removing a sound from the audio player while the game/application is running.  
+  
+  - **TryRemoveSound (string soundName)**  
+  Same as "RemoveSound" but it'll check if the sound exists in the player and only if it does, it'll call the remove method.

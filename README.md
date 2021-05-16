@@ -2,95 +2,14 @@
  The **AudUnity** project is used to make audio playing and sound management in **Unity** easier than ever.
  To use it, add an Audio Player component, drag an audio library to it and play the sounds by calling the play method on the Audio Player.
 
-### Content
-- [**Setup Examples**](#setup-examples)
-- [**Documentations**](#documentations)
+![img](https://i.imgur.com/5KecoO9.png)
+
   - [Audio Players](#audio-players)
+  - [Global Audio Player](#global-audio-player)
+  - [Global Audio Player Link](#global-audio-player-link)
   - [Audio Library](#audio-library)
   - [Sound](#sound)
 
-# How it works
- - **Local Audio Player** component  
-  Used on objects like enemies in your game, or just sound you want to **play** on a **specific location** in your game world.  
-  
- - **Global Audio Player** component  
-  Will be used for stuff like, UI sounds, and sounds you just want to **play globally in your scene**.
-  
- - **Global Audio Player Link** component  
-  For calling the Global Audio Player inside the unity editor (Button component etc...)
-  
- - **Audio Library** scriptable object  
-  An object that contain sounds, and can reference other audio libraries.  
-  You can make many audio libraries divided by category or a theme, and refernce them in a single audio library.  
-  
- - **Sound** scriptable object  
-  An object that contains all the data about your sound.  
-  Its volume, name, audio mixer, whether the sound should loop when it's played and much more.  
-   
- An **Audio Player**, takes an **Audio Library** object, and initializes the sound it contains so you'll be able to play them easily.
- The **Local Audio Player** is 
- The **Global Audio Player**, will be used for stuff like, UI sounds, and sounds you just want to **play globally in your scene**.
- Only a **single** Global Audio Player **component can exist in a scene**, and it is recomended to **put it on the camera** along with the Audio Listener.
- Then create a new Audio Library object, add Sound objects to it and drag it to the Audio Player.
- 
-# Usage Examples
- If you have already initialized an Audio Player, this is how you can use it:  
- Let's say you wanna play the shooting sound of your gun.  
- First thing you got to do is to reference the Audio Player you want to call.  
-   
- ```csharp
- public LocalAudioPlayer audioPlayer; // in insperctor
- ```
-   
- You can play the shooting sound by calling the "Play" method, using the name you gave to the sound in its sound object.
- 
- ```csharp
- void Shoot()
- {
-   audioPlayer.Play("shoot-sound");
- }
- ```
- 
- You can also play the sound with a delay specified in seconds.
- 
- ```csharp
- audioPlayer.PlayDelayed("shoot-sound", 2.3f);
- ```
-
-# Setup Examples
-### User Interface
- Let's say you have a button in Unity, and you have a sound you want the button to play when it is being pressed.  
- For audio like that, you wanna use the Global Audio Player, because you want UI sounds to play globally on the scene.  
- So go to your main camera in your scene and click **Add Component/AudUnity/Global Audio Player**.  
-   
- ![img](https://i.imgur.com/G3UTAca.png)  ![img](https://i.imgur.com/Ogj5QOd.png)  
-   
- Now after you added a Global Audio Player, all you got to add Audio Libraries to it.  
- To do that, right click inside Unity's Project window, choose **Create/Sounder/AudioLibrary**, and name it UI.  
-   
- ![img](https://i.imgur.com/PV98Yjo.png)
-   
- Now you have an Audio Library named UI that you can reference inside AudioPlayers.  
- So do it, and drag that Audio Library to the list in the Audio Player component.
- 
- ![img](https://i.imgur.com/8VaCTsr.png)  ![img](https://i.imgur.com/0k8ZFcb.png)
- 
- Inside Unity's Project window, press **right click**, and choose **Create/Sounder/Sound** and create a new sound.  
-   
- ![img](https://i.imgur.com/ryZihQU.png)  
-   
- That's a sound object, and it consists of many value you can change to set every type of sound in your game.  
- You can change the volume, the name, the mixer, you can make the sound loop and much more.  
-   
- ![img](https://i.imgur.com/t1UUQgv.png)  
- 
- Then, create a new Audio Library. You can do it by pressing right click inside Unity's Project window an choosing **Create/Sounder/AudioLibrary** An audio lbrary is just an object that has an array of sounds in it.  
- For example, if you created a sound for the for your UI, that you want to play when the player pushes a button, you w
- 
-# Documentations
-- [Audio Players](#audio-players)
-- [Audio Library](#audio-library)
-- [Sound](#sound)
 
 ## Audio Players  
 The two main Unity MonoBehaviour components that play the audio.  
@@ -103,11 +22,7 @@ For using in the code a **Local Audio Player** you **need a reference** of the A
 
 - Variables
   - **Linked Audio Libraries**  
-  The Audio Libraries the Audio Player Initializes
-  
-  - **Initialize On Awake**  
-  A toggle box, visible in the inspector, determines if the Audio Player should be initialized on awake.  
-  If set to false, make sure you press the Initialize button on the Audio Player every time you change somthing about the Linked Audio Libraries.  
+  The Audio Libraries the Audio Player Initializes on Awake
 
 - Properties
   - **SoundCount**  
@@ -135,7 +50,7 @@ For using in the code a **Local Audio Player** you **need a reference** of the A
   - **SetMute (string, bool)**  
   Mutes or unmutes a sound from the audio player by its name.
   
-  - **SetLoop (string)**  
+  - **SetLoop (string, bool)**  
   Plays a sound from the audio player by its name.
   
   - **IsPlaying (string)**  
@@ -164,7 +79,16 @@ For using in the code a **Local Audio Player** you **need a reference** of the A
   Same as "RemoveSound" but it'll check if the sound exists in the player and only if it does, it'll call the remove method.
 
 ## Global Audio Player
-Works exactly like a Local Audio Player, but if you want to call its methods or properties, you can do it without a reference, because only a single Global Audio Player can exist in a scene.
+Works exactly like a Local Audio Player, but if you want to call its methods or properties, you can do it without a reference, because only a single Global Audio Player can exist in a scene.  
+It contains every method a Local Audio Player has, but in the Global Audio Player they are static.
+
+- Properties
+  - **Player**  
+    Returns the currently active Global Audio Player.  
+    Only a single Global Audio Player can exist in a scene.
+
+### Examples:
+
 **Local Audio Player Example Code**  
 Playing a shooting sound when the method Shoot() is called 
 
@@ -217,6 +141,24 @@ void Shoot()
     GlobalAudioPlayer.Play(soundName_shoot); // play shoot sound
 }
 ```
+## Global Audio Player Link
+A component for calling the global audio player through the Unity Editor.  
+Used for things like buttons, when you want to reference a method in a script.  
+The Link component has these methods:  
+(when they're called, they're being called on the current Global Audio Player)
+- **Play (string)**
+- **PlayDelayed (string, float)**
+- **Stop (string)**
+- **Pause (string)**
+- **UnPause (string)**
+- **SetVolume (string, float)**
+- **SetMute (string, bool)**
+- **SetLoop (string, bool)**
+
+### Example:
+I'm playing the click sound using the Global Audio Player Link component:  
+
+![img](https://i.imgur.com/sAXudew.png)
 
 ## Audio Library
 Used for storing many sounds.  
@@ -227,10 +169,12 @@ To reference a library in a player, **add it** to the array of libraries **Linke
 
 - Variables
   - **Sounds**  
+  An array of Sound objects.  
   The sounds contained in the audio library.
 
 
   - **Audio Libraries**  
+  An array of Audio Library objects.  
   An Audio Library can reference other Audio libraries.  
   So you can create many small libraries and link them together inside a mega library that references them.
 

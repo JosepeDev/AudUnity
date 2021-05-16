@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sounder
+namespace AudUnity
 {
     /// <summary>
     /// A scriptable object that stores a sound
@@ -8,12 +8,9 @@ namespace Sounder
     [CreateAssetMenu(fileName = "Sound", menuName = LocalAudioPlayer.menuCategory + "Sound", order = 0)]
     public class Sound : ScriptableObject
     {
-        /// <summary>
-        /// The sound contained in the preset
-        /// </summary>
-        [Tooltip("The sound contained in the preset")]
+        [Tooltip("The sound")]
         public SoundData sound;
-        
+
         /// <summary>
         /// Set the name of the sound by the name of the scriptable objcet
         /// </summary>
@@ -24,6 +21,9 @@ namespace Sounder
         /// </summary>
         protected internal void NameByClip() => sound.soundName = sound.clip.name;
 
+        /// <summary>
+        /// Default constructor for Unity's Reset function
+        /// </summary>
         public Sound()
         {
             sound = new SoundData("Unamed sound");

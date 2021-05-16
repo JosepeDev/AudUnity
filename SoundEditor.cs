@@ -1,10 +1,10 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Sounder
+namespace AudUnity
 {
     [CustomEditor(typeof(Sound))]
-    public class SoundEditor : Editor
+    internal class SoundEditor : Editor
     {
         readonly string btxt_autoNameObject = "Name by Scriptable Object name";
         readonly string btxt_autoNameClip = "Name by Audio Clip name";
@@ -15,7 +15,7 @@ namespace Sounder
 
             Sound sound = (Sound)target;
 
-            GUILayout.Space(30);
+            GUILayout.Space(SoundData.spaceBetweenCategories);
 
             if (GUILayout.Button(btxt_autoNameObject))
             {

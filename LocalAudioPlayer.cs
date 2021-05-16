@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
-using static Sounder.SounderUtility;
+using static AudUnity.AudUtility;
 
-namespace Sounder
+namespace AudUnity
 {
     /// Properties ----
     /// - SoundsCount         - Amount of sounds in audio player
@@ -36,11 +33,8 @@ namespace Sounder
     [AddComponentMenu(menuCategory + "Local Audio Player")]
     public class LocalAudioPlayer : MonoBehaviour
     {
-        public const string menuCategory = "Sounder/";
-        public const string audioSourcesContainerObjName = "AudioPlayerObject";
-
-        [HideInInspector] public bool cashedInitializeOnAwake;
-        public bool initializeOnAwake;
+        protected internal const string menuCategory = "AudUnity/";
+        protected internal const string audioSourcesContainerObjName = "AudioPlayerObject";
 
         GameObject _audioSourcesContainer;
         GameObject AudioSourcesContainer
@@ -87,8 +81,7 @@ namespace Sounder
 
         void Awake()
         {
-            if (initializeOnAwake)
-                Initialize();
+            Initialize();
         }
 
         /// <summary>
@@ -96,9 +89,14 @@ namespace Sounder
         /// </summary>
         internal virtual void Initialize()
         {
-            OnInitialize();
-            ResetAudioSourcesContainer();
-            AddSounds(linkedAudioLibraries);
+            InitializeAudioPlayer(this);
+        }
+
+        internal void InitializeAudioPlayer(LocalAudioPlayer p)
+        {
+            p.OnInitialize();
+            p.ResetAudioSourcesContainer();
+            p.AddSounds(p.linkedAudioLibraries);
         }
 
         Transform GetAudioSourcesContainer() => gameObject.transform.Find(audioSourcesContainerObjName);
@@ -112,7 +110,7 @@ namespace Sounder
             return newObj;
         }
 
-        public void ResetAudioSourcesContainer()
+        internal void ResetAudioSourcesContainer()
         {
             _audioSourcesContainer = null;
             var container = GetAudioSourcesContainer();
@@ -124,7 +122,7 @@ namespace Sounder
         /// Adds sounds to the Audio Player from an array of audio libraries
         /// </summary>
         /// <param name="libraries">An array of audio libraries</param>
-        public virtual void AddSounds(AudioLibrary[] libraries)
+        public void AddSounds(AudioLibrary[] libraries)
         {
             if (libraries != null)
             {
@@ -139,7 +137,7 @@ namespace Sounder
         /// Adds sounds to the Audio Player from an Audio Library
         /// </summary>
         /// <param name="library">An audio library</param>
-        public virtual void AddSounds(AudioLibrary library)
+        public void AddSounds(AudioLibrary library)
         {
             if (library != null)
             {
@@ -155,24 +153,8 @@ namespace Sounder
         /// <summary>
         /// Adds sounds to the Audio Player from an array of sounds
         /// </summary>
-        /// <param name="sounds">An array of sounds</param>
-        public virtual void AddSounds(SoundData[] sounds)
-        {
-            if (sounds != null)
-            {
-                // create an audio source component for each sound and set its settings
-                for (int i = 0; i < sounds.Length; i++)
-                {
-                    AddSound(sounds[i]);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Adds sounds to the Audio Player from an array of sounds
-        /// </summary>
         /// <param name="s">An array of sounds</param>
-        public virtual void AddSounds(Sound[] soundPresets)
+        public void AddSounds(Sound[] soundPresets)
         {
             if (soundPresets != null && soundPresets.Length > 0)
             {
@@ -200,7 +182,7 @@ namespace Sounder
         /// Adds a sound to the Audio Player
         /// </summary>
         /// <param name="s">The sound you want to add</param>
-        public virtual void AddSound(SoundData s)
+        public void AddSound(SoundData s)
         {
             var source = AudioSourcesContainer.AddComponent<AudioSource>();
 
@@ -222,7 +204,6 @@ namespace Sounder
             source.playOnAwake = s.playOnAwake;
             source.loop = s.loop;
 
-
             if (s.playOnAwake)
             {
                 source.Play();
@@ -236,13 +217,13 @@ namespace Sounder
         /// Adds sound the Audio Player
         /// </summary>
         /// <param name="s">A sound</param>
-        public virtual void AddSound(Sound s) => AddSound(s.sound);
+        public void AddSound(Sound s) => AddSound(s.sound);
 
         /// <summary>
         /// Removes a sound by a given name
         /// </summary>
         /// <param name="name">The name of the sound you want to remove</param>
-        public virtual void RemoveSound(string name)
+        public void RemoveSound(string name)
         {
             AudioSource source = audioSources[name];
             source.Stop();
@@ -255,7 +236,7 @@ namespace Sounder
         /// </summary>
         /// <param name="name">The name of the sound you want to remove</param>
         /// <returns>true if the sound has been removed</returns>
-        public virtual bool TryRemoveSound(string name)
+        public bool TryRemoveSound(string name)
         {
             if (SoundExists(name))
             {
@@ -269,38 +250,38 @@ namespace Sounder
         /// Plays a sound by a given name
         /// </summary>
         /// <param name="soundName">A string containing the name of the sound</param>
-        public virtual void Play(string soundName) => audioSources[soundName].Play();
+        public void Play(string soundName) => audioSources[soundName].Play();
 
         /// <summary>
         /// Plays a sound with a delay specified in seconds by a given name
         /// </summary>
         /// <param name="soundName">A string containing the name of the sound</param>
-        public virtual void PlayDelayed(string soundName, float delay) => audioSources[soundName].PlayDelayed(delay);
+        public void PlayDelayed(string soundName, float delay) => audioSources[soundName].PlayDelayed(delay);
 
         /// <summary>
         /// Stops a sound by a given name
         /// </summary>
         /// <param name="soundName">A string containing the name of the sound</param>
-        public virtual void Stop(string soundName) => audioSources[soundName].Stop();
+        public void Stop(string soundName) => audioSources[soundName].Stop();
 
         /// <summary>
         /// Pauses a sound by a given name
         /// </summary>
         /// <param name="soundName">A string containing the name of the sound</param>
-        public virtual void Pause(string soundName) => audioSources[soundName].Pause();
+        public void Pause(string soundName) => audioSources[soundName].Pause();
 
         /// <summary>
         /// UnPauses a sound by a given name
         /// </summary>
         /// <param name="soundName">A string containing the name of the sound</param>
-        public virtual void UnPause(string soundName) => audioSources[soundName].UnPause();
+        public void UnPause(string soundName) => audioSources[soundName].UnPause();
 
         /// <summary>
         /// Sets the volume of a sound by a given name
         /// </summary>
         /// <param name="name">A string containing the name of the sound</param>
         /// <param name="volume">The desired volume - from 0 to 1</param>
-        public virtual void SetVolume(string name, float volume)
+        public void SetVolume(string name, float volume)
         {
             if (!string.IsNullOrEmpty(name))
             {
@@ -313,34 +294,34 @@ namespace Sounder
         /// </summary>
         /// <param name="name">The name of the sound you want to mute/unmute</param>
         /// <param name="mute">true = mute, false = unmute</param>
-        public virtual void SetMute(string name, bool mute) => audioSources[name].mute = mute;
+        public void SetMute(string name, bool mute) => audioSources[name].mute = mute;
 
         /// <summary>
         /// Turns on or off sound's looping option
         /// </summary>
         /// <param name="name">The name of the sound</param>
         /// <param name="loop"></param>
-        public virtual void SetLoop(string name, bool loop) => audioSources[name].loop = loop;
+        public void SetLoop(string name, bool loop) => audioSources[name].loop = loop;
 
         /// <summary>
         /// Check if a sound is currently playing
         /// </summary>
         /// <param name="name">The name of the sound</param>
         /// <returns>true if the sound is currently playing</returns>
-        public virtual bool IsPlaying(string name) => audioSources[name].isPlaying;
+        public bool IsPlaying(string name) => audioSources[name].isPlaying;
 
         /// <summary>
-        /// Check if a sound exists in the player
+        /// Check if a sound is exists in the player
         /// </summary>
         /// <param name="name">The name of the sound</param>
         /// <returns>true if the sound exists</returns>
-        public virtual bool SoundExists(string name) => audioSources[name] == null ? false : true;
+        public bool SoundExists(string name) => audioSources[name] == null ? false : true;
 
         /// <summary>
         /// Returns an AudioSource component by a given sound name
         /// </summary>
         /// <param name="name">The name of the sound</param>
         /// <returns>AudioSource component of the sound</returns>
-        public virtual AudioSource GetSoundAudioSource(string name) => audioSources[name];
+        public AudioSource GetSoundAudioSource(string name) => audioSources[name];
     }
 }

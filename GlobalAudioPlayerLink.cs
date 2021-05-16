@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sounder
+namespace AudUnity
 {
     /// <summary>
     /// A class for calling the global audio player in the scene from the unity editor (buttons, etc...)
@@ -11,13 +9,20 @@ namespace Sounder
     [AddComponentMenu(LocalAudioPlayer.menuCategory + "Global Audio Player Link")]
     public class GlobalAudioPlayerLink : MonoBehaviour
     {
-        public void Play(string soundName) => GlobalAudioPlayer.Play(soundName);
-        public void PlayDelayed(string soundName, float delay) => GlobalAudioPlayer.PlayDelayed(soundName, delay);
-        public void Stop(string soundName) => GlobalAudioPlayer.Stop(soundName);
-        public void Pause(string soundName) => GlobalAudioPlayer.Pause(soundName);
-        public void UnPause(string soundName) => GlobalAudioPlayer.UnPause(soundName);
-        public void SetVolume(string name, float volume) => GlobalAudioPlayer.SetVolume(name, volume);
-        public void SetMute(string name, bool mute) => GlobalAudioPlayer.SetMute(name, mute);
-        public void SetLoop(string name, bool loop) => GlobalAudioPlayer.SetLoop(name, loop);
+        LocalAudioPlayer audioPlayer;
+
+        private void Start()
+        {
+            audioPlayer = GlobalAudioPlayer.Player;
+        }
+
+        public void Play(string soundName) => audioPlayer.Play(soundName);
+        public void PlayDelayed(string soundName, float delay) => audioPlayer.PlayDelayed(soundName, delay);
+        public void Stop(string soundName) => audioPlayer.Stop(soundName);
+        public void Pause(string soundName) => audioPlayer.Pause(soundName);
+        public void UnPause(string soundName) => audioPlayer.UnPause(soundName);
+        public void SetVolume(string name, float volume) => audioPlayer.SetVolume(name, volume);
+        public void SetMute(string name, bool mute) => audioPlayer.SetMute(name, mute);
+        public void SetLoop(string name, bool loop) => audioPlayer.SetLoop(name, loop);
     }
 }

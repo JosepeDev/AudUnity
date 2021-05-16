@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sounder
+namespace AudUnity
 {
     /// <summary>
     /// <para>A scriptable object, that stores sounds and references other audio libraries.</para>

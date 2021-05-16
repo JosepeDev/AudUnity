@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Sounder
+namespace AudUnity
 {
     /// <summary>
     /// A class containing every property of a sound
@@ -9,7 +9,10 @@ namespace Sounder
     [System.Serializable]
     public class SoundData
     {
-        const int spaceBetweenCategories = 20;
+        /// <summary>
+        /// For the spaces in the inspector
+        /// </summary>
+        internal const int spaceBetweenCategories = 20;
 
         /// <summary>
         /// The name of the sound

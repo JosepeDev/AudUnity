@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Sounder.SounderUtility;
+using static UnityEngine.Debug;
 
-namespace Sounder
+namespace AudUnity
 {
     [AddComponentMenu(menuCategory + "Global Audio Player")]
     public class GlobalAudioPlayer : LocalAudioPlayer
@@ -37,11 +34,13 @@ namespace Sounder
             return gameObject.GetComponent<GlobalAudioPlayer>() ?? gameObject.AddComponent<GlobalAudioPlayer>();
         }
 
-        internal override void Initialize() => Player.Initialize();
+        internal override void Initialize()
+        {
+            InitializeAudioPlayer(Player);
+        }
 
         public static new void AddSounds(AudioLibrary[] libraries) => Player.AddSounds(libraries);
         public static new void AddSounds(AudioLibrary library) => Player.AddSounds(library);
-        public static new void AddSounds(SoundData[] soundDatas) => Player.AddSounds(soundDatas);
         public static new void AddSounds(Sound[] sounds) => Player.AddSounds(sounds);
         public static new void AddSound(SoundData s) => Player.AddSound(s);
         public static new void AddSound(Sound s) => Player.AddSound(s.sound);

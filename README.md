@@ -88,17 +88,43 @@
  
 # Documentations
 ### Local and Global Audio Player  
-Properties and Methods the global and local Audio Players have in common
+Variables, Properties, and Methods the global and local Audio Players have in common
+- Variables
+  - **linkedAudioLibraries**  
+  The Audio Libraries the Audio Player Initializes
+  
+  - **initializeOnAwake**  
+  A toggle box, visible in the inspector, determines if the Audio Player should be initialized on awake.  
+  If set to false, make sure you press the Initialize button on the Audio Player every time you change somthing about the Linked Audio Libraries.  
+
 - Properties
   - **SoundCount**  
   A property that returns the amount of initialized sounds in the audio player  
     
 - Methods
-  - **Play (string soundName)**  
+  - **Play(string soundName)**  
   Plays a sound from the audio player by its name.
   
-  - **PlayDelayed (string soundName, float delay)**  
+  - **PlayDelayed(string soundName, float delay)**  
   Like "Play", but it will play the sound with a delay specified in seconds
+  
+  - **Stop(string soundName)**  
+  Stops a sound from the audio player by its name.  
+  
+  - ```Pause(string soundName)```  
+  Pauses a sound from the audio player by its name.
+  
+  - ```UnPause(string soundName)```  
+  Un pauses a sound from the audio player by its name.
+  
+  - ```SetVolume(string soundName, float volume)```  
+  Sets a sound's volume from the audio player by its name.
+  
+  - ```SetMute(string soundName, bool mute)```  
+  Mutes or unmutes a sound from the audio player by its name.
+  
+  - **SetLoop(string soundName)**  
+  Plays a sound from the audio player by its name.
   
   - **AddSounds (AudioLibrary[])**  
    **AddSounds (AudioLibrary)**  

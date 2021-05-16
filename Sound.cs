@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace AudUnity
 {
+    [CanEditMultipleObjects]
     /// <summary>
     /// A scriptable object that stores a sound
     /// </summary>
@@ -27,6 +29,11 @@ namespace AudUnity
         public Sound()
         {
             sound = new SoundData("Unamed sound");
+        }
+
+        private void OnValidate()
+        {
+            SoundEditor.ReplayIfIsPlaying(this);
         }
     }
 }

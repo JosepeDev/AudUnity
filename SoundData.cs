@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.Audio;
 
 namespace AudUnity
@@ -6,6 +7,7 @@ namespace AudUnity
     /// <summary>
     /// A class containing every property of a sound
     /// </summary>
+    [CanEditMultipleObjects]
     [System.Serializable]
     public class SoundData
     {

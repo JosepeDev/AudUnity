@@ -12,7 +12,7 @@
 </p>
 
  The **AudUnity** project is used to make audio playing and sound management in **Unity** easier than ever.
- To use it, add an Audio Player component, drag an audio library to it and play the sounds by calling the play method on the Audio Player.
+ To use it, basically **add** an **Audio Player** component, **drag** an **Audio Library** into it and play the sounds by **calling the play** method on the Audio Player.
 
 ![img](https://i.imgur.com/5KecoO9.png)
 
@@ -26,9 +26,9 @@
 ## Audio Players  
 The two main Unity MonoBehaviour components that play the audio.  
 
-A **Local Audio Player** component will be used on objects like enemies in your game, or just sound you want to play on a specific location in your game world.  
+A **Local Audio Player** component will be used on objects like enemies in your game, or just ***sound you want to play on a specific location in your game world***sounds.  
 
-A **Global Audio Player** component will be used for stuff like, UI sounds, and sounds you just want to play globally in your scene. Only a single Global Audio Player component can exist in a scene, and it is recomended to put it on the camera along with the Audio Listener.  
+A **Global Audio Player** component will be used for stuff like, UI sounds, and ***sounds you just want to play globally in your scene***. Only a **single** Global Audio Player **component** can **exist in a scene**, and it is recomended to **put** it **on** the **camera** along with the Audio Listener.  
 
 For using in the code a **Local Audio Player** you **need a reference** of the Audio Player, **but** for the **Global Audio Player** you you **don't need a reference** and can **call** the methods and the properties **instantly** through the **static members** of the Global Audio Player class.
 
@@ -91,7 +91,7 @@ For using in the code a **Local Audio Player** you **need a reference** of the A
   Same as "RemoveSound" but it'll check if the sound exists in the player and only if it does, it'll call the remove method.
 
 ## Global Audio Player
-Works exactly like a Local Audio Player, but if you want to call its methods or properties, you can do it without a reference, because only a single Global Audio Player can exist in a scene.  
+Works exactly like a Local Audio Player, but if you want to call its methods or properties, you **can** do it **without** a **reference**, because only a single Global Audio Player can exist in a scene.  
 It contains every method a Local Audio Player has, but in the Global Audio Player they are static.
 
 - Properties
@@ -154,7 +154,7 @@ void Shoot()
 }
 ```
 ## Global Audio Player Link
-A component for calling the global audio player through the Unity Editor.  
+A component **for calling the [Global Audio Player](#global-audio-player) through the Unity Editor**.  
 Used for things like buttons, when you want to reference a method in a script.  
 The Link component has these methods:  
 (when they're called, they're being called on the current Global Audio Player)
@@ -176,7 +176,7 @@ I'm playing the click sound using the Global Audio Player Link component:
 Used for storing many sounds.  
 A **scriptable object** that **contains sounds** and can also **reference other audio libraries**.  
 So if you initialize an **AudioLibrary**, it will initialize every sound it contains, and then, it will also initialize **all the libraries** referenced in that audio library too.  
-A library can be initialized if it is **referenced inside** an **Audio Player**.  
+A library can be initialized if it is **referenced inside** an [**Audio Player**](#audio-players).  
 To reference a library in a player, **add it** to the array of libraries **Linked Audio Libraries** inside an AudioPlayer.
 
 - Variables
@@ -193,8 +193,11 @@ To reference a library in a player, **add it** to the array of libraries **Linke
 ## Sound
 Used for storing a data about a sound.  
 When a sound is initialized, it takes all the data from the Sound object, and initializes the sound with that data.  
-Only change variables that you know what they're doing.  
-To play the sound, put it inside a [library](#audio-library), and initialize the library inside an [AudioPlayer](#audio-players) and call the Play method.
+
+**Only change variables that you know what they're doing.**  
+To play the sound, put it inside a [library](#audio-library), and initialize the library inside an [AudioPlayer](#audio-players) and call the Play method.  
+
+When editing a sound in the editor, you can play to see how it will sound in the game. When the sound is currently playing, if you make changes, it will replay the sound so you can hear the difference.
 
 - Variables
   - **soundName**  

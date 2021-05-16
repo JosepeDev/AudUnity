@@ -1,4 +1,16 @@
  ![img](https://i.imgur.com/XvUmyGB.png)
+ <p align="center">
+        <img src="https://img.shields.io/codefactor/grade/github/JosepeDev/AudUnity/main">
+        <img src="https://img.shields.io/github/languages/code-size/JosepeDev/AudUnity">
+        <img src="https://img.shields.io/github/license/JosepeDev/AudUnity">
+        <img src="https://img.shields.io/github/v/release/JosepeDev/AudUnity">
+</p>
+<p align="center">
+        <img src="https://img.shields.io/github/followers/JosepeDev?style=social">
+        <img src="https://img.shields.io/github/watchers/JosepeDev/AudUnity?style=social">
+        <img src="https://img.shields.io/github/stars/JosepeDev/AudUnity?style=social">
+</p>
+
  The **AudUnity** project is used to make audio playing and sound management in **Unity** easier than ever.
  To use it, add an Audio Player component, drag an audio library to it and play the sounds by calling the play method on the Audio Player.
 

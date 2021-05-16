@@ -12,7 +12,7 @@ namespace AudUnity
         const string btxt_autoNameClip = "Name by Audio Clip name";
         const string btxt_play = "Play";
         const string btxt_stop = "Stop";
-        const string objName_play = "Played Sound";
+        const string objName_play = "Played Sound By Sound Editor";
 
         public override void OnInspectorGUI()
         {

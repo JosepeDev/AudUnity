@@ -3,7 +3,9 @@ using UnityEngine;
 
 namespace AudUnity
 {
+#if UNITY_EDITOR
     [CanEditMultipleObjects]
+#endif
     /// <summary>
     /// A scriptable object that stores a sound
     /// </summary>
@@ -31,9 +33,11 @@ namespace AudUnity
             sound = new SoundData("Unamed sound");
         }
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             SoundEditor.ReplayIfIsPlaying(this);
         }
+#endif
     }
 }

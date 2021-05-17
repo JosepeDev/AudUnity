@@ -2,6 +2,8 @@
 using UnityEngine;
 using static UnityEngine.Debug;
 
+#if UNITY_EDITOR
+
 namespace AudUnity
 {
     [CanEditMultipleObjects]
@@ -96,3 +98,5 @@ namespace AudUnity
         private void OnDestroy() => DestroyImmediateIfPlayObjectExist();
     }
 }
+
+#endif

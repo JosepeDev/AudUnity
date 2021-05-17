@@ -7,7 +7,9 @@ namespace AudUnity
     /// <summary>
     /// A class containing every property of a sound
     /// </summary>
+#if UNITY_EDITOR
     [CanEditMultipleObjects]
+#endif
     [System.Serializable]
     public class SoundData
     {

@@ -11,7 +11,7 @@ namespace AudUnity
     {
         LocalAudioPlayer audioPlayer;
 
-        private void Start()
+        private void Awake()
         {
             audioPlayer = GlobalAudioPlayer.Player;
         }

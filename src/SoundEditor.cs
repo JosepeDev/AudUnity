@@ -1,6 +1,5 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using static UnityEngine.Debug;
 
 #if UNITY_EDITOR
 
@@ -25,11 +24,8 @@ namespace AudUnity
             if (GUILayout.Button(btxt_autoNameObject))
                 sound.NameByObject();
 
-            if (sound.sound.clip != null)
-            {
-                if (GUILayout.Button(btxt_autoNameClip))
-                    sound.NameByClip();
-            }
+            if (sound.sound.clip != null && GUILayout.Button(btxt_autoNameClip))
+                sound.NameByClip();
 
             GUILayout.BeginHorizontal();
  
@@ -37,11 +33,8 @@ namespace AudUnity
                 PlayNow(sound);
 
             var playObject = GameObject.Find(objName_play);
-            if (playObject != null)
-            {
-                if (GUILayout.Button(btxt_stop))
-                    DestroyImmediate(playObject);
-            }
+            if (playObject != null && GUILayout.Button(btxt_stop))
+                DestroyImmediate(playObject);
 
             GUILayout.EndHorizontal();
         }
@@ -78,18 +71,14 @@ namespace AudUnity
         {
             var gO = GameObject.Find(objName_play);
             if (gO != null)
-            {
                 PlayNow(sound);
-            }
         }
 
         static internal void DestroyImmediateIfPlayObjectExist()
         {
             var playObject = GameObject.Find(objName_play);
             if (playObject != null)
-            {
                 DestroyImmediate(playObject);
-            }
         }
         
         private void OnEnable() => DestroyImmediateIfPlayObjectExist();

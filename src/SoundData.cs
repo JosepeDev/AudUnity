@@ -55,11 +55,13 @@ namespace AudUnity
         public bool bypassEffects;
         public bool bypassListenerEffects;
         public bool bypassReverbZones;
+
         // <summary>
         /// Determines if the sound shoud be played on Awake()
         /// </summary>
         [Tooltip("Turn on if you want the sound to be played automatically when Awake is being called")]
         public bool playOnAwake;
+
         /// <summary>
         /// Determines if the sound should loop when it is played
         /// </summary>

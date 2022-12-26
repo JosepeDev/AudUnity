@@ -4,10 +4,11 @@ using static AudUnity.AudUtility;
 
 namespace AudUnity
 {
-    /// Properties ----
+    /// Properties --------------------------------------------------------------------
     /// - SoundsCount         - Amount of sounds in audio player
+    /// -------------------------------------------------------------------------------
     /// 
-    /// Methods -------
+    /// Methods -----------------------------------------------------------------------
     /// - Play                - Plays a sound
     /// - PlayDelayed         - Plays a sound with a delay specified in seconds
     /// - Stop                - Stops a sound
@@ -25,6 +26,7 @@ namespace AudUnity
     /// - RemoveSound         - Removes a sound from the player
     /// - TryRemoveSound      - Removes a sound from the player only if it exists
     /// - GetSoundAudioSource - Returns an AudioSource component by a given sound name
+    /// -------------------------------------------------------------------------------
     /// 
     /// <summary>
     /// <para>A component that takes an "AudioLibrary" object and initializes the sounds it stores.</para> 
@@ -67,10 +69,8 @@ namespace AudUnity
         private HashSet<int> referencedAudioLibraries = new HashSet<int>();
         private HashSet<int> soundsHashes = new HashSet<int>();
 
-        void OnLoadLibrary(AudioLibrary lib)
-        {
+        void OnLoadLibrary(AudioLibrary lib) =>
             CurrentLibraryName = lib.name;
-        }
 
         void OnInitialize()
         {
@@ -79,18 +79,14 @@ namespace AudUnity
             soundsHashes = new HashSet<int>();
         }
 
-        void Awake()
-        {
+        void Awake() =>
             Initialize();
-        }
 
         /// <summary>
         /// Initializes an Audio Player by adding its linked Audio Library
         /// </summary>
-        internal virtual void Initialize()
-        {
+        internal virtual void Initialize() =>
             InitializeAudioPlayer(this);
-        }
 
         internal void InitializeAudioPlayer(LocalAudioPlayer p)
         {
@@ -104,7 +100,9 @@ namespace AudUnity
         GameObject InitializeAudioSourcesContainer()
         {
             var current = GetAudioSourcesContainer();
-            if (current != null) return current.gameObject;
+            if (current != null) 
+                return current.gameObject;
+
             var newObj = new GameObject(audioSourcesContainerObjName);
             newObj.transform.parent = transform;
             return newObj;
@@ -125,12 +123,8 @@ namespace AudUnity
         public void AddSounds(AudioLibrary[] libraries)
         {
             if (libraries != null)
-            {
                 for (int i = 0; i < libraries.Length; i++)
-                {
                     AddSounds(libraries[i]);
-                }
-            }
         }
 
         /// <summary>
@@ -139,14 +133,12 @@ namespace AudUnity
         /// <param name="library">An audio library</param>
         public void AddSounds(AudioLibrary library)
         {
-            if (library != null)
+            if (library != null && 
+                referencedAudioLibraries.Add(library.GetInstanceID()))
             {
-                if (referencedAudioLibraries.Add(library.GetInstanceID()))
-                {
-                    OnLoadLibrary(library);
-                    AddSounds(library.sounds);
-                    AddSounds(library.audioLibraries);
-                }
+                OnLoadLibrary(library);
+                AddSounds(library.sounds);
+                AddSounds(library.audioLibraries);
             }
         }
 
@@ -205,9 +197,7 @@ namespace AudUnity
             source.loop = s.loop;
 
             if (s.playOnAwake)
-            {
                 source.Play();
-            }
 
             // add to audio sources list
             audioSources.Add(s.soundName, source);
@@ -284,9 +274,7 @@ namespace AudUnity
         public void SetVolume(string name, float volume)
         {
             if (!string.IsNullOrEmpty(name))
-            {
                 audioSources[name].volume = volume;
-            }
         }
 
         /// <summary>

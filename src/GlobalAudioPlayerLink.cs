@@ -11,10 +11,8 @@ namespace AudUnity
     {
         LocalAudioPlayer audioPlayer;
 
-        private void Awake()
-        {
+        private void Awake() =>
             audioPlayer = GlobalAudioPlayer.Player;
-        }
 
         public void Play(string soundName) => audioPlayer.Play(soundName);
         public void PlayDelayed(string soundName, float delay) => audioPlayer.PlayDelayed(soundName, delay);

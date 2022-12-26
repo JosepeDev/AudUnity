@@ -14,9 +14,7 @@ namespace AudUnity
             get
             {
                 if (globalAudioPlayer == null)
-                {
                     globalAudioPlayer = InitializeGlobalPlayer();
-                }
                 return globalAudioPlayer;
             }
         }
@@ -29,15 +27,15 @@ namespace AudUnity
         private static LocalAudioPlayer InitializeGlobalPlayer()
         {
             var globalPlayerComponent = FindObjectOfType<GlobalAudioPlayer>();
-            if (globalPlayerComponent != null) return globalPlayerComponent; 
+            if (globalPlayerComponent != null) 
+                return globalPlayerComponent; 
+
             var gameObject = Camera.main.gameObject;
             return gameObject.GetComponent<GlobalAudioPlayer>() ?? gameObject.AddComponent<GlobalAudioPlayer>();
         }
 
-        internal override void Initialize()
-        {
+        internal override void Initialize() =>
             InitializeAudioPlayer(Player);
-        }
 
         public static new void AddSounds(AudioLibrary[] libraries) => Player.AddSounds(libraries);
         public static new void AddSounds(AudioLibrary library) => Player.AddSounds(library);
@@ -66,9 +64,7 @@ namespace AudUnity
         {
             var globalPlayers = FindObjectsOfType<GlobalAudioPlayer>();
             if (globalPlayers.Length > 1)
-            {
                 LogError("You have more than one GlobalAudioPlayer in a scene");
-            }
         }
     }
 }

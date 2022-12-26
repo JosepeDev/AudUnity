@@ -1,14 +1,14 @@
  ![img](https://i.imgur.com/XvUmyGB.png)
  <p align="center">
         <img src="https://img.shields.io/codefactor/grade/github/JosepeDev/AudUnity/main">
-        <img src="https://img.shields.io/github/languages/code-size/JosepeDev/AudUnity">
-        <img src="https://img.shields.io/github/license/JosepeDev/AudUnity">
-        <img src="https://img.shields.io/github/v/release/JosepeDev/AudUnity">
+        <img src="https://img.shields.io/github/languages/code-size/jozzzzep/AudUnity">
+        <img src="https://img.shields.io/github/license/jozzzzep/AudUnity">
+        <img src="https://img.shields.io/github/v/release/jozzzzep/AudUnity">
 </p>
 <p align="center">
-        <img src="https://img.shields.io/github/followers/JosepeDev?style=social">
-        <img src="https://img.shields.io/github/watchers/JosepeDev/AudUnity?style=social">
-        <img src="https://img.shields.io/github/stars/JosepeDev/AudUnity?style=social">
+        <img src="https://img.shields.io/github/followers/jozzzzep?style=social">
+        <img src="https://img.shields.io/github/watchers/jozzzzep/AudUnity?style=social">
+        <img src="https://img.shields.io/github/stars/jozzzzep/AudUnity?style=social">
 </p>
 
  The **AudUnity** project is used to make audio playing and sound management in **Unity** easier than ever.

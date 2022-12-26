@@ -1,6 +1,6 @@
  ![img](https://i.imgur.com/XvUmyGB.png)
  <p align="center">
-        <img src="https://img.shields.io/codefactor/grade/github/JosepeDev/AudUnity/main">
+        <img src="https://img.shields.io/codefactor/grade/github/jozzzzep/AudUnity/main">
         <img src="https://img.shields.io/github/languages/code-size/jozzzzep/AudUnity">
         <img src="https://img.shields.io/github/license/jozzzzep/AudUnity">
         <img src="https://img.shields.io/github/v/release/jozzzzep/AudUnity">

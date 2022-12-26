@@ -31,11 +31,11 @@ This is he fastest and easiest way.
 ## Audio Players  
 The two main Unity MonoBehaviour components that play the audio.  
 
-A **Local Audio Player** component will be used on objects like enemies in your game, or just ***sound you want to play on a specific location in your game world***sounds.  
+A **Local Audio Player** component will be used on objects like enemies in your game, or just ***sound you want to play on a specific location in your game world***.  
 
 A **Global Audio Player** component will be used for stuff like, UI sounds, and ***sounds you just want to play globally in your scene***. Only a **single** Global Audio Player **component** can **exist in a scene**, and it is recomended to **put** it **on** the **camera** along with the Audio Listener.  
 
-For using in the code a **Local Audio Player** you **need a reference** of the Audio Player, **but** for the **Global Audio Player** you you **don't need a reference** and can **call** the methods and the properties **instantly** through the **static members** of the Global Audio Player class.
+For using in the code a **Local Audio Player** you **need a reference** of the Audio Player, **but** for the **Global Audio Player** you **don't need a reference** and can **call** the methods and the properties **instantly** through the **static methods** of the Global Audio Player class.
 
 - Variables
   - **Linked Audio Libraries**  
@@ -197,7 +197,7 @@ To reference a library in a player, **add it** to the array of libraries **Linke
 
 ## Sound
 Used for storing a data about a sound.  
-When a sound is initialized, it takes all the data from the Sound object, and initializes the sound with that data.  
+When a sound is initialized by a AudioPlayer (global or local), it takes all the data from the Sound object, and initializes the sound with that data.  
 
 **Only change variables that you know what they're doing.**  
 To play the sound, put it inside a [library](#audio-library), and initialize the library inside an [AudioPlayer](#audio-players) and call the Play method.  

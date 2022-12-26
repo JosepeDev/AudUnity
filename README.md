@@ -13,6 +13,11 @@
 
  The **AudUnity** project is used to make audio playing and sound management in **Unity** easier than ever.
  To use it, basically **add** an **Audio Player** component, **drag** an **Audio Library** into it and play the sounds by **calling the play** method on the Audio Player.
+  
+# Importing
+[**Click here to download**](https://github.com/jozzzzep/AudUnity/raw/main/packages/AudUnity.unitypackage), or go to the packages folder of the repository and download the package file.  
+Then import the package directly to your project like any other Unity package. 
+This is he fastest and easiest way.  
 
 ![img](https://i.imgur.com/5KecoO9.png)
 
